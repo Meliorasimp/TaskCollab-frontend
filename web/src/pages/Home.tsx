@@ -9,7 +9,7 @@ import UserManagement from "../assets/profile.png";
 import RealtimeUpdate from "../assets/real-time.png";
 import Integration from "../assets/integration.png";
 import Analytics from "../assets/analysis.png";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { setIsLoginModalOpen } from "../store/Landingpage";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,45 +22,6 @@ const Home = () => {
     (state: RootState) => state.landingpage
   );
   console.log("login modal state", isLoginModalOpen);
-
-  // Parallax scroll state and refs
-  const [scrollY, setScrollY] = useState(0);
-  const slide1Ref = useRef<HTMLDivElement>(null);
-  const slide2Ref = useRef<HTMLDivElement>(null);
-  const slide3Ref = useRef<HTMLDivElement>(null);
-  const slide4Ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    // Use passive listener for better mobile performance
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Calculate parallax transforms for each slide
-  const getSlideTransform = (slideNumber: number) => {
-    const viewportHeight = window.innerHeight;
-    const slideStart = viewportHeight * (slideNumber - 1);
-    const slideProgress = Math.max(
-      0,
-      Math.min(1, (scrollY - slideStart) / viewportHeight)
-    );
-
-    // Apply different transform rates for parallax effect
-    const translateY = slideProgress * 50; // Adjust multiplier for stronger/weaker effect
-    const opacity = 1 - slideProgress * 0.3; // Fade slightly as user scrolls past
-
-    return {
-      transform: `translateY(${translateY}px)`,
-      opacity: Math.max(0.7, opacity),
-    };
-  };
   const featuresData = [
     {
       id: "1",
@@ -146,11 +107,7 @@ const Home = () => {
       <LandingpageTopbar />
       <div className="relative">
         {/* First Slide - Landing Page */}
-        <div
-          ref={slide1Ref}
-          className="sticky top-0 h-screen flex flex-col items-center justify-center"
-          style={getSlideTransform(1)}
-        >
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
           <img
             src={Landingpageimage}
             alt="Landing Page"
@@ -181,11 +138,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div
-          ref={slide2Ref}
-          className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-br from-gray-50 via-blue-50 to-purple-50 text-black px-4 sm:px-6 md:px-8"
-          style={getSlideTransform(2)}
-        >
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-br from-gray-50 via-blue-50 to-purple-50 text-black px-4 sm:px-6 md:px-8">
           <div className="max-w-7xl mx-auto w-full">
             <h1 className="mb-3 sm:mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Powerful Features
@@ -199,7 +152,7 @@ const Home = () => {
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 0}
-                className="hidden md:block p-3 md:p-4 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 flex-shrink-0"
+                className="hidden md:block p-3 md:p-4 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 shrink-0"
               >
                 <svg
                   className="w-5 h-5 md:w-6 md:h-6 text-gray-800"
@@ -310,11 +263,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div
-          ref={slide3Ref}
-          className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-purple-800 to-pink-800 text-white px-4 sm:px-6 md:px-8"
-          style={getSlideTransform(3)}
-        >
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-purple-800 to-pink-800 text-white px-4 sm:px-6 md:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-center">
             The Third Slide
           </h2>
@@ -322,11 +271,7 @@ const Home = () => {
             On Progress...
           </p>
         </div>
-        <div
-          ref={slide4Ref}
-          className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-blue-200 to-indigo-100 text-black px-4 sm:px-6 md:px-8"
-          style={getSlideTransform(4)}
-        >
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-blue-200 to-indigo-100 text-black px-4 sm:px-6 md:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-center">
             The Fourth Slide
           </h2>
