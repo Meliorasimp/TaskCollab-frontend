@@ -113,49 +113,49 @@ const Home = () => {
             alt="Landing Page"
             className="w-full h-full absolute top-0 left-0 object-cover image-darken"
           />
-          <div className="relative z-10 px-4 max-w-5xl mx-auto">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white text-center mb-6 leading-tight">
+          <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white text-center mb-4 sm:mb-6 leading-tight">
               Work Together.{" "}
               <span className="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                 Achieve More.
               </span>
             </h1>
-            <p className="mt-6 text-lg md:text-2xl text-gray-200 text-center max-w-3xl mx-auto font-light leading-relaxed">
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 text-center max-w-3xl mx-auto font-light leading-relaxed">
               A collaborative platform designed to keep your team synchronized,
               productive, and focused on what truly matters.
             </p>
-            <div className="mt-10 flex gap-4 justify-center">
+            <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
               <button
-                className="px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all hover:scale-105 shadow-xl"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 transition-all hover:scale-105 shadow-xl"
                 onClick={() => dispatch(setIsLoginModalOpen(true))}
               >
                 Get Started
               </button>
-              <button className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all hover:scale-105">
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-white hover:text-gray-900 transition-all hover:scale-105">
                 Learn More
               </button>
             </div>
           </div>
         </div>
 
-        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-br from-gray-50 via-blue-50 to-purple-50 text-black px-8">
-          <div className="max-w-7xl mx-auto">
-            <h1 className="mb-4 text-5xl md:text-6xl font-bold text-center bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-br from-gray-50 via-blue-50 to-purple-50 text-black px-4 sm:px-6 md:px-8">
+          <div className="max-w-7xl mx-auto w-full">
+            <h1 className="mb-3 sm:mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Powerful Features
             </h1>
-            <p className="mb-16 text-xl text-gray-600 text-center max-w-2xl mx-auto">
+            <p className="mb-8 sm:mb-12 md:mb-16 text-base sm:text-lg md:text-xl text-gray-600 text-center max-w-2xl mx-auto px-4">
               Everything your team needs for seamless collaboration
             </p>
 
-            <div className="flex items-center justify-center gap-8">
-              {/* Left Arrow */}
+            <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-8">
+              {/* Left Arrow - Hidden on mobile */}
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 0}
-                className="p-4 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="hidden md:block p-3 md:p-4 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 flex-shrink-0"
               >
                 <svg
-                  className="w-6 h-6 text-gray-800"
+                  className="w-5 h-5 md:w-6 md:h-6 text-gray-800"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -169,7 +169,7 @@ const Home = () => {
                 </svg>
               </button>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl">
                 <AnimatePresence mode="wait">
                   {dataToShow.map((feature, index) => (
                     <motion.div
@@ -183,10 +183,10 @@ const Home = () => {
                         ease: "easeOut",
                       }}
                       whileHover={{ y: -8, scale: 1.02 }}
-                      className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100"
+                      className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100"
                     >
                       <motion.div
-                        className="w-16 h-16 rounded-xl flex items-center justify-center mb-6"
+                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center mb-4 sm:mb-6"
                         initial={{ rotate: -180, scale: 0 }}
                         animate={{ rotate: 0, scale: 1 }}
                         transition={{
@@ -199,11 +199,11 @@ const Home = () => {
                         <img
                           src={feature.img}
                           alt={feature.alt}
-                          className="w-18 h-18"
+                          className="w-14 h-14 sm:w-18 sm:h-18"
                         />
                       </motion.div>
                       <motion.h2
-                        className="text-2xl font-bold mb-3 text-gray-800"
+                        className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-800"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
@@ -211,7 +211,7 @@ const Home = () => {
                         {feature.title}
                       </motion.h2>
                       <motion.p
-                        className="text-gray-600 leading-relaxed"
+                        className="text-sm sm:text-base text-gray-600 leading-relaxed"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.4, delay: index * 0.1 + 0.4 }}
@@ -223,14 +223,14 @@ const Home = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Right Arrow */}
+              {/* Right Arrow - Hidden on mobile */}
               <button
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages - 1}
-                className="p-4 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="hidden md:block p-3 md:p-4 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 flex-shrink-0"
               >
                 <svg
-                  className="w-6 h-6 text-gray-800"
+                  className="w-5 h-5 md:w-6 md:h-6 text-gray-800"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -244,15 +244,37 @@ const Home = () => {
                 </svg>
               </button>
             </div>
+
+            {/* Pagination dots for mobile/tablet */}
+            <div className="flex justify-center gap-2 mt-6 sm:mt-8 md:hidden">
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentPage(index)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    currentPage === index
+                      ? "bg-indigo-600 w-8"
+                      : "bg-gray-300 hover:bg-gray-400"
+                  }`}
+                  aria-label={`Go to page ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-purple-800 to-pink-800 text-white">
-          <h2 className="text-4xl font-bold">The Third Slide</h2>
-          <p className="mt-2">On Progress...</p>
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-purple-800 to-pink-800 text-white px-4 sm:px-6 md:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center">
+            The Third Slide
+          </h2>
+          <p className="mt-2 text-base sm:text-lg text-center">
+            On Progress...
+          </p>
         </div>
-        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-blue-200 to-indigo-100 text-black">
-          <h2 className="text-4xl font-bold">The Fourth Slide</h2>
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-blue-200 to-indigo-100 text-black px-4 sm:px-6 md:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center">
+            The Fourth Slide
+          </h2>
         </div>
       </div>
       {isLoginModalOpen && <Login />}
