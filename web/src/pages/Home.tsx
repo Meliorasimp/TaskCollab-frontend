@@ -22,40 +22,43 @@ const Home = () => {
     (state: RootState) => state.landingpage
   );
   console.log("login modal state", isLoginModalOpen);
-  
+
   // Parallax scroll state and refs
   const [scrollY, setScrollY] = useState(0);
   const slide1Ref = useRef<HTMLDivElement>(null);
   const slide2Ref = useRef<HTMLDivElement>(null);
   const slide3Ref = useRef<HTMLDivElement>(null);
   const slide4Ref = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    
+
     // Use passive listener for better mobile performance
     window.addEventListener("scroll", handleScroll, { passive: true });
-    
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
+
   // Calculate parallax transforms for each slide
   const getSlideTransform = (slideNumber: number) => {
     const viewportHeight = window.innerHeight;
     const slideStart = viewportHeight * (slideNumber - 1);
-    const slideProgress = Math.max(0, Math.min(1, (scrollY - slideStart) / viewportHeight));
-    
+    const slideProgress = Math.max(
+      0,
+      Math.min(1, (scrollY - slideStart) / viewportHeight)
+    );
+
     // Apply different transform rates for parallax effect
     const translateY = slideProgress * 50; // Adjust multiplier for stronger/weaker effect
     const opacity = 1 - slideProgress * 0.3; // Fade slightly as user scrolls past
-    
+
     return {
       transform: `translateY(${translateY}px)`,
-      opacity: Math.max(0.7, opacity)
+      opacity: Math.max(0.7, opacity),
     };
   };
   const featuresData = [
@@ -143,7 +146,7 @@ const Home = () => {
       <LandingpageTopbar />
       <div className="relative">
         {/* First Slide - Landing Page */}
-        <div 
+        <div
           ref={slide1Ref}
           className="sticky top-0 h-screen flex flex-col items-center justify-center"
           style={getSlideTransform(1)}
@@ -178,7 +181,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div 
+        <div
           ref={slide2Ref}
           className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-br from-gray-50 via-blue-50 to-purple-50 text-black px-4 sm:px-6 md:px-8"
           style={getSlideTransform(2)}
@@ -303,27 +306,27 @@ const Home = () => {
                   aria-label={`Go to page ${index + 1}`}
                 />
               ))}
-            <
-          ref={slide3Ref}
-          className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-purple-800 to-pink-800 text-white px-4 sm:px-6 md:px-8"
-          style={getSlideTransform(3)}
-        
+            </div>
           </div>
         </div>
 
-        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-purple-800 to-pink-800 text-white px-4 sm:px-6 md:px-8">
+        <div
+          ref={slide3Ref}
+          className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-purple-800 to-pink-800 text-white px-4 sm:px-6 md:px-8"
+          style={getSlideTransform(3)}
+        >
           <h2 className="text-3xl sm:text-4xl font-bold text-center">
             The Third Slide
           </h2>
-          <p 
-          ref={slide4Ref}
-          className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-blue-200 to-indigo-100 text-black px-4 sm:px-6 md:px-8"
-          style={getSlideTransform(4)}
-        
+          <p className="mt-2 text-base sm:text-lg text-center">
             On Progress...
           </p>
         </div>
-        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-blue-200 to-indigo-100 text-black px-4 sm:px-6 md:px-8">
+        <div
+          ref={slide4Ref}
+          className="sticky top-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-blue-200 to-indigo-100 text-black px-4 sm:px-6 md:px-8"
+          style={getSlideTransform(4)}
+        >
           <h2 className="text-3xl sm:text-4xl font-bold text-center">
             The Fourth Slide
           </h2>
