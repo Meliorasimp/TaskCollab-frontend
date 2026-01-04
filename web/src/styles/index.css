@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+.main-bg-color {
+  background-color: #ecf1f5;
+  font-family: "Inter", sans-serif;
+}
+
+.image-darken {
+  filter: brightness(70%);
+}
