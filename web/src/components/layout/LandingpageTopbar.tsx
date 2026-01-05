@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 const LandingpageTopbar = () => {
   const dispatch = useDispatch();
   return (
-    <nav className="bg-gray-300 p-4 text-black flex items-center px-30 sticky top-0 z-50 shadow-md justify-between">
+    <nav className="bg-gray-300 p-4 text-black flex items-center px-30 sticky top-0 z-10 shadow-md justify-between">
       <div className="flex items-center space-x-2 mr-20">
         <img src={Bird} alt="Bird logo" className="h-8 w-8" />
         <h1 className="text-lg">Automa</h1>
@@ -24,6 +24,7 @@ const LandingpageTopbar = () => {
         <div className="text-md flex items-center font-semibold">
           <h1
             className="cursor-pointer border-b-2 border-transparent hover:border-black"
+            title="Click to Login"
             onClick={() => dispatch(setIsLoginModalOpen(true))}
           >
             Login

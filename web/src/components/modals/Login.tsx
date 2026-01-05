@@ -1,8 +1,12 @@
-import { setIsLoginModalOpen } from "../../store/Landingpage";
+import {
+  setIsLoginModalOpen,
+  setIsRegisterModalOpen,
+} from "../../store/Landingpage";
 import { useDispatch } from "react-redux";
 import Google from "../../assets/google.png";
 import Loginimage from "../../assets/loginimage.jpg";
 import Bird from "../../assets/bird.png";
+import { motion } from "framer-motion";
 const Login = () => {
   const dispatch = useDispatch();
   return (
@@ -10,13 +14,18 @@ const Login = () => {
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       onClick={() => dispatch(setIsLoginModalOpen(false))}
     >
-      <div
-        className="bg-white rounded-2xl shadow-lg w-2/3 z-50 h-3/4 overflow-y-auto flex"
+      <motion.div
+        className="bg-white rounded-2xl shadow-lg w-2/3 z-50 h-5/6 overflow-y-auto flex items-center relative"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ duration: 0.3 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-2/5 bg-purple-700 relative">
+        <div className="w-2/5 bg-purple-700 rounded-l-2xl h-full relative overflow-hidden">
           <img
             src={Loginimage}
+            loading="lazy"
             alt="Login"
             className="rounded-l-2xl h-full w-full object-cover absolute"
           />
@@ -27,7 +36,7 @@ const Login = () => {
             </p>
           </div>
         </div>
-        <div className="w-3/5 flex flex-col p-10 items-center">
+        <div className="w-3/5 flex flex-col pl-10 pr-10 pb-10 items-center">
           <h1 className="text-4xl font-semibold">Welcome Back!</h1>
           <p className="mt-4 text-gray-500 text-sm">
             Login to your account to continue Task Collaboration with your team.
@@ -68,9 +77,21 @@ const Login = () => {
               />
               Login with Google
             </button>
+            <p className="mt-4 text-gray-500 text-sm">
+              Don't have an account?{" "}
+              <span
+                className="text-purple-700 cursor-pointer"
+                onClick={() => {
+                  dispatch(setIsRegisterModalOpen(true));
+                  dispatch(setIsLoginModalOpen(false));
+                }}
+              >
+                Register Now.
+              </span>
+            </p>
           </form>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

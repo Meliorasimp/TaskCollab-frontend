@@ -15,13 +15,12 @@ import { setIsLoginModalOpen } from "../store/Landingpage";
 import { useDispatch, useSelector } from "react-redux";
 import Login from "../components/modals/Login";
 import Register from "../components/modals/Register";
-import type { RootState } from "../store";
+import type { RootState } from "../store/index.ts";
 const Home = () => {
   const dispatch = useDispatch();
   const { isLoginModalOpen, isRegisterModalOpen } = useSelector(
     (state: RootState) => state.landingpage
   );
-  console.log("login modal state", isLoginModalOpen);
   const featuresData = [
     {
       id: "1",
@@ -227,7 +226,7 @@ const Home = () => {
               <button
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages - 1}
-                className="hidden md:block p-3 md:p-4 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 flex-shrink-0"
+                className="hidden md:block p-3 md:p-4 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 shrink-0"
               >
                 <svg
                   className="w-5 h-5 md:w-6 md:h-6 text-gray-800"
@@ -277,8 +276,8 @@ const Home = () => {
           </h2>
         </div>
       </div>
-      {isLoginModalOpen && <Login />}
-      {isRegisterModalOpen && <Register />}
+      <AnimatePresence>{isLoginModalOpen && <Login />}</AnimatePresence>
+      <AnimatePresence>{isRegisterModalOpen && <Register />}</AnimatePresence>
     </div>
   );
 };
