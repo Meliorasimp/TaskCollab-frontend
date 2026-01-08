@@ -1,5 +1,18 @@
 import g1 from "../../assets/g1.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../store";
+import {
+  setIsNotificationsOpen,
+  setIsUserSettingsOpen,
+} from "../../store/Dashboard";
+import Notifications from "../popup/Notifications";
+import UserSettings from "../popup/UserSettings";
+import { AnimatePresence } from "framer-motion";
 const MainTopbar = () => {
+  const dispatch = useDispatch();
+  const { isNotificationsOpen, isUserSettingsOpen } = useSelector(
+    (state: RootState) => state.dashboard
+  );
   return (
     <div className="h-16 w-full border-b-2 border-gray-200">
       <div className="flex items-center px-8 h-full w-full justify-between">
@@ -50,6 +63,10 @@ const MainTopbar = () => {
               stroke-width="1.5"
               stroke="currentColor"
               className="size-6 h-8 w-8 ml-6 text-gray-600 cursor-pointer"
+              onClick={() => {
+                dispatch(setIsNotificationsOpen(!isNotificationsOpen));
+                dispatch(setIsUserSettingsOpen(false));
+              }}
             >
               <path
                 stroke-linecap="round"
@@ -61,10 +78,18 @@ const MainTopbar = () => {
               src={g1}
               alt="User Avatar"
               className="h-10 w-10 rounded-full ml-4 cursor-pointer"
+              onClick={() => {
+                dispatch(setIsUserSettingsOpen(!isUserSettingsOpen));
+                dispatch(setIsNotificationsOpen(false));
+              }}
             />
           </div>
         </div>
       </div>
+      <AnimatePresence>
+        {isNotificationsOpen && <Notifications />}
+        {isUserSettingsOpen && <UserSettings />}
+      </AnimatePresence>
     </div>
   );
 };
