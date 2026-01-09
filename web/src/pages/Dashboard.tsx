@@ -5,11 +5,11 @@ import jd from "../assets/jd.webp";
 import nd from "../assets/nd.jpg";
 const Dashboard = () => {
   return (
-    <div className="h-screen flex bg-gray-100 overflow-hidden">
+    <div className="min-h-screen flex bg-gray-100">
       <MainNavbar />
-      <div className="w-full flex flex-col overflow-hidden">
+      <div className="w-full flex flex-col ml-56">
         <MainTopbar />
-        <main className="p-6 flex-1 flex gap-x-6 overflow-hidden">
+        <main className="p-6 flex-1 flex gap-x-6">
           <div className="flex-1 flex flex-col">
             <section className="flex gap-x-6 mb-6">
               <div className="bg-white shadow-md rounded-2xl w-1/3 p-6 flex justify-between flex-col hover:border-blue-400 transition-all duration-300 border-2 border-gray-200">

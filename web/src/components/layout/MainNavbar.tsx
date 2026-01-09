@@ -2,7 +2,7 @@ import Bird from "../../assets/bird.png";
 import { Link } from "react-router-dom";
 const MainNavbar = () => {
   return (
-    <div className="min-w-56 bg-gray-50 border-r-2 border-gray-200 flex flex-col justify-between h-screen">
+    <div className="min-w-56 bg-gray-50 border-r-2 border-gray-200 flex flex-col justify-between h-screen fixed left-0 top-0">
       <div>
         <div className="flex pt-4 pl-4 items-center space-x-2">
           <img src={Bird} alt="Logo" className="h-8 w-8" />
