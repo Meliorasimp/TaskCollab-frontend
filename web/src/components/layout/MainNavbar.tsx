@@ -2,7 +2,7 @@ import Bird from "../../assets/bird.png";
 import { Link } from "react-router-dom";
 const MainNavbar = () => {
   return (
-    <div className="min-w-56 bg-gray-50 border-r-2 border-gray-200 flex flex-col justify-between h-screen fixed left-0 top-0">
+    <nav className="min-w-56 bg-gray-50 border-r-2 border-gray-200 flex flex-col justify-between h-screen fixed left-0 top-0">
       <div>
         <div className="flex pt-4 pl-4 items-center space-x-2">
           <img src={Bird} alt="Logo" className="h-8 w-8" />
@@ -51,7 +51,7 @@ const MainNavbar = () => {
           </Link>
           <Link
             className="flex items-center hover:bg-gray-300 pl-4 text-gray-600 gap-x-2 cursor-pointer py-2"
-            to={"/projects/:username"}
+            to={"/projects"}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ const MainNavbar = () => {
           </Link>
           <Link
             className="flex items-center hover:bg-gray-300 pl-4 text-gray-600 gap-x-2 cursor-pointer py-2"
-            to={"/team/:username"}
+            to={"/team"}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +135,7 @@ const MainNavbar = () => {
           Settings
         </Link>
       </div>
-    </div>
+    </nav>
   );
 };
 
