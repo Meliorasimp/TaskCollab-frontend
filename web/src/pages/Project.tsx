@@ -3,6 +3,7 @@ import MainTopbar from "../components/layout/MainTopbar";
 import jd from "../assets/jd.webp";
 import nd from "../assets/nd.jpg";
 import voodoodoll from "../assets/voodoo-doll.png";
+import { Link } from "react-router-dom";
 const Project = () => {
   return (
     <div className="min-h-screen flex bg-gray-100">
@@ -10,7 +11,7 @@ const Project = () => {
       <div className="w-full flex flex-col ml-56">
         <MainTopbar />
         <main className="h-full m-6">
-          <section className="h-10">
+          <section>
             <h1 className="text-3xl font-bold text-gray-800">Projects</h1>
           </section>
           <section className="h-10 flex justify-between items-center mt-4">
@@ -109,7 +110,7 @@ const Project = () => {
                   title="group logo"
                 />
               </div>
-              <div className="border-2 border-gray-300 p-4 bg-linear-to-br from-white to-red-400 rounded-xl shadow-sm">
+              <div className="border-2 border-gray-300 p-4 bg-linear-to-br from-white to-red-200 rounded-xl shadow-sm">
                 <h1 className="font-semibold text-xl">Website Developing</h1>
                 <div className="mt-6">
                   <p className="text-gray-600">Project Description:</p>
@@ -131,37 +132,38 @@ const Project = () => {
                 </div>
                 <div className="mt-6">
                   <p className="text-gray-600">Team Members:</p>
-                  <div className="flex mt-2 gap-x-8">
-                    <div className="flex items-center gap-x-4">
+                  <div className="flex mt-2 gap-x-2">
+                    <div className="flex items-center">
                       <img
                         src={jd}
                         alt="Jane Doe"
                         className="w-8 h-8 rounded-full"
                       />
-                      <h1 className="text-lg font-medium">Jane Doe</h1>
                     </div>
-                    <div className="flex items-center gap-x-4">
+                    <div className="flex items-center">
                       <img
                         src={nd}
                         alt="Nicole Demara"
                         className="w-8 h-8 rounded-full"
                       />
-                      <h1 className="text-lg font-medium">Nicole Demara</h1>
                     </div>
                   </div>
                 </div>
                 <div className="mt-6">
-                  <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-400">
+                  <Link
+                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-400"
+                    to={"/projects/:projectname"}
+                  >
                     View Details
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
-            <div className="border-2 border-gray-300 p-4 bg-linear-to-br from-white to-blue-700 rounded-xl shadow-sm">
-              Grid 2
-            </div>
-            <div className="border-2 border-gray-300 p-4 bg-white rounded-xl shadow-sm">
-              Grid 3
+            <div
+              className="border-2 border-dashed border-gray-300 p-4 bg-white rounded-xl 
+            shadow-sm flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
+            >
+              + Add New Project
             </div>
           </section>
         </main>

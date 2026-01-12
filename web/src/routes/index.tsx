@@ -4,6 +4,7 @@ import Dashboard from "../pages/Dashboard";
 import Project from "../pages/Project";
 import Task from "../pages/Task";
 import Team from "../pages/Team";
+import ProjectDetail from "../pages/ProjectDetail";
 
 export const routes: RouteObject[] = [
   {
@@ -25,5 +26,9 @@ export const routes: RouteObject[] = [
   {
     path: "/team",
     element: <Team />,
+  },
+  {
+    path: "/projects/:projectname",
+    element: <ProjectDetail />,
   },
 ];

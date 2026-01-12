@@ -1,5 +1,8 @@
 import MainNavbar from "../components/layout/MainNavbar";
 import MainTopbar from "../components/layout/MainTopbar";
+import nd from "../assets/nd.jpg";
+import jd from "../assets/jd.webp";
+import g1 from "../assets/g1.jpg";
 const Team = () => {
   return (
     <div className="min-h-screen flex bg-gray-100">
@@ -80,13 +83,13 @@ const Team = () => {
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center text-white font-bold">
-                        FD
+                        V
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-800">
-                          Frontend Development
+                        <p className="font-semibold text-gray-800">Voodoo</p>
+                        <p className="text-sm text-gray-500">
+                          Creating Scalable Web App
                         </p>
-                        <p className="text-sm text-gray-500">Building UI/UX</p>
                       </div>
                     </div>
                   </td>
@@ -94,23 +97,22 @@ const Team = () => {
                     <div className="flex items-center gap-2">
                       <div className="flex -space-x-2">
                         <img
-                          src="..."
+                          src={nd}
                           className="w-8 h-8 rounded-full border-2 border-white"
                         />
                         <img
-                          src="..."
+                          src={jd}
                           className="w-8 h-8 rounded-full border-2 border-white"
                         />
                         <img
-                          src="..."
+                          src={g1}
                           className="w-8 h-8 rounded-full border-2 border-white"
                         />
                       </div>
-                      <span className="text-sm text-gray-600">+9</span>
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-gray-800 font-medium">8</span>
+                    <span className="text-gray-800 font-medium">1</span>
                   </td>
                   <td className="px-6 py-4">
                     <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">
