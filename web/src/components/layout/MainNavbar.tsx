@@ -111,7 +111,10 @@ const MainNavbar = () => {
           </Link>
         </div>
       </div>
-      <div className="mb-4 flex items-center gap-x-2 text-gray-600 cursor-pointer hover:bg-gray-300 px-2 py-2">
+      <Link
+        className="mb-4 flex items-center gap-x-2 text-gray-600 cursor-pointer hover:bg-gray-300 px-2 py-2"
+        to="/settings"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -131,10 +134,8 @@ const MainNavbar = () => {
             d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
           />
         </svg>
-        <Link className="" to={"/settings"}>
-          Settings
-        </Link>
-      </div>
+        <h1 className="text-lg">Settings</h1>
+      </Link>
     </nav>
   );
 };

@@ -2,13 +2,58 @@ import {
   setIsLoginModalOpen,
   setIsRegisterModalOpen,
 } from "../../store/Landingpage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Google from "../../assets/google.png";
 import Loginimage from "../../assets/loginimage.jpg";
 import Bird from "../../assets/bird.png";
 import { motion } from "framer-motion";
+import { useMutation } from "@apollo/client/react";
+import loginUser from "../../GraphQL/UserMutations/loginUser.gql";
+import type React from "react";
+import { setEmail, setPassword } from "../../store/Login";
+import type { RootState } from "../../store";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
+  const nav = useNavigate();
+  const { email, password } = useSelector((state: RootState) => state.login);
+  const [loginUserMutation] = useMutation(loginUser);
+  console.log(email, password);
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const response = await loginUserMutation({
+      variables: {
+        input: {
+          email: email,
+          password: password,
+        },
+      },
+    });
+    if (response && response.data) {
+      const data = response.data as {
+        loginUser: {
+          username?: string;
+          success: boolean;
+          error?: string;
+          token?: string;
+        };
+      };
+      if (data.loginUser.success && data.loginUser.token) {
+        localStorage.setItem("token", data.loginUser.token);
+        localStorage.setItem("username", data.loginUser.username || "");
+        toast.success("Login Successful!");
+        dispatch(setEmail(""));
+        dispatch(setPassword(""));
+        dispatch(setIsLoginModalOpen(false));
+        nav("/dashboard");
+      } else if (data.loginUser.error) {
+        toast.error(data.loginUser.error);
+      }
+    }
+  };
   return (
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
@@ -41,11 +86,16 @@ const Login = () => {
           <p className="mt-4 text-gray-500 text-sm">
             Login to your account to continue Task Collaboration with your team.
           </p>
-          <form className="mt-4 w-full flex flex-col items-center">
+          <form
+            className="mt-4 w-full flex flex-col items-center"
+            onSubmit={handleLogin}
+          >
             <label className="text-gray-700 mb-2 text-left w-3/4">Email</label>
             <input
               type="email"
               className="border border-gray-300 rounded-md p-2 w-3/4"
+              onChange={(e) => dispatch(setEmail(e.target.value))}
+              value={email}
             />
 
             <label className="text-gray-700 mb-2 mt-4 text-left w-3/4">
@@ -54,6 +104,8 @@ const Login = () => {
             <input
               type="password"
               className="border border-gray-300 rounded-md p-2 w-3/4"
+              onChange={(e) => dispatch(setPassword(e.target.value))}
+              value={password}
             />
             <button
               type="submit"
