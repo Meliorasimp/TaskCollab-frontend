@@ -3,7 +3,17 @@ import MainTopbar from "../components/layout/MainTopbar";
 import nd from "../assets/nd.jpg";
 import jd from "../assets/jd.webp";
 import g1 from "../assets/g1.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../store";
+import { setTeamModalOpen } from "../store/Team";
+import { lazy, Suspense } from "react";
+import { AnimatePresence } from "framer-motion";
+const CreateTeam = lazy(() => import("../components/modals/CreateTeam"));
 const Team = () => {
+  const dispatch = useDispatch();
+  const TeamModalState = useSelector(
+    (state: RootState) => state.createTeam.isCreateTeamModalOpen
+  );
   return (
     <div className="min-h-screen flex bg-gray-100">
       <MainNavbar />
@@ -16,7 +26,10 @@ const Team = () => {
               <h1 className="text-3xl font-bold text-gray-800">My Teams</h1>
               <p className="text-gray-500">Manage your teams</p>
             </div>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-sm font-medium flex items-center gap-2">
+            <button
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-sm font-medium flex items-center gap-2"
+              onClick={() => dispatch(setTeamModalOpen(true))}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -139,6 +152,15 @@ const Team = () => {
           </div>
         </main>
       </div>
+      {TeamModalState && (
+        <AnimatePresence>
+          <Suspense
+            fallback={<div className="absolute inset-0">Loading...</div>}
+          >
+            <CreateTeam />
+          </Suspense>
+        </AnimatePresence>
+      )}
     </div>
   );
 };

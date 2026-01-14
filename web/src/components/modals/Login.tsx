@@ -14,11 +14,19 @@ import { setEmail, setPassword } from "../../store/Login";
 import type { RootState } from "../../store";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
+import type { CSSProperties } from "react";
 const Login = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
+  const override: CSSProperties = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  };
   const { email, password } = useSelector((state: RootState) => state.login);
-  const [loginUserMutation] = useMutation(loginUser);
+  const [loginUserMutation, { loading }] = useMutation(loginUser);
   console.log(email, password);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,7 +49,7 @@ const Login = () => {
           token?: string;
         };
       };
-      if (data.loginUser.success && data.loginUser.token) {
+      if (data.loginUser.success && data.loginUser.token && loading === false) {
         localStorage.setItem("token", data.loginUser.token);
         localStorage.setItem("username", data.loginUser.username || "");
         toast.success("Login Successful!");
@@ -54,6 +62,13 @@ const Login = () => {
       }
     }
   };
+  if (loading === true) {
+    return (
+      <div>
+        <ClipLoader cssOverride={override} />
+      </div>
+    );
+  }
   return (
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"

@@ -4,6 +4,7 @@ import Register from "./Register/index.ts";
 import DashboardStore from "./Dashboard/index.ts";
 import Task from "./Task/index.ts";
 import Login from "./Login/index.ts";
+import CreateTeam from "./Team/index.ts";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     login: Login,
     dashboard: DashboardStore,
     task: Task,
+    createTeam: CreateTeam,
   },
 });
 
